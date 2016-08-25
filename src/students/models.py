@@ -27,11 +27,17 @@ class Group(models.Model):
     course = models.IntegerField(choices=COURSE_CHOICES)
     edu_level = models.CharField(max_length=MAX_LEN, choices=EDU_LEVEL_CHOICES)
 
+    def __str__(self):
+        return self.title
+
 
 class Student(models.Model):
-    first_name = models.CharField(max_length=MAX_LEN)
     last_name = models.CharField(max_length=MAX_LEN)
+    first_name = models.CharField(max_length=MAX_LEN)
     patronymic_name = models.CharField(max_length=MAX_LEN)
     date_birth = models.DateField()
-    group = models.ForeignKey(Group)
-    course = models.CharField(max_length=MAX_LEN, choices=COURSE_CHOICES)
+    group = models.ForeignKey(Group, related_name='students')
+    course = models.IntegerField(choices=COURSE_CHOICES)
+
+    def __str__(self):
+        return ' '.join((self.last_name, self.first_name, self.patronymic_name))
