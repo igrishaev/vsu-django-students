@@ -24,23 +24,9 @@
 (defn component []
   (when-let [group @state]
     [:div
-     (:title group)
+     [:h4 (format "№%s %s" (:number group) (:title group))]
+     [:p (:subtitle group)]
+     [:p (format "%s форма обучения" (:edu_form group))]
+     [:p (format "%s курс" (:course group))]
+     [:p (format "%s уровень образования" (:edu_level group))]
      [student-list/component]]))
-
-;; (defn group-dialog []
-;;   (when-let [group @atom-group]
-;;     [:div.modal-dialog.modal-lg
-;;      [:div.modal-content
-;;       [:div.modal-header
-;;        [:button {:type "button" :class "close"}
-;;         [:span {:aria-hidden "true" :on-click close-group} "×"]]
-;;        [:h4 (:title group)]]
-;;       [:div.modal-body
-;;        [:p (:subtitle group)]
-;;        [:p (:edu_level group)]
-;;        [:p (:edu_form group)]]]]))
-;;        ;; (let [students (r/atom nil)
-;;        ;;       url (format "/api/groups/%s/students/" (:id group))]
-;;        ;;   (GET url {:format :json
-;;        ;;             :keywords? true
-;;        ;;             :handler #()

@@ -8,10 +8,12 @@ __all__ = (
 MAX_LEN = 255
 
 COURSE_CHOICES = [(x, x) for x in range(1, 6)]
+
 EDU_FORM_CHOICES = [
     ('full-fime', 'Очная'),
     ('part-fime', 'Заочная'),
 ]
+
 EDU_LEVEL_CHOICES = [
     ('low', 'Низший'),
     ('mid', 'Средний'),

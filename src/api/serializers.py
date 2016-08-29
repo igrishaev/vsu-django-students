@@ -9,15 +9,24 @@ __all__ = (
 )
 
 
-class StudentSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = models.Student
-        # fields = ('id', 'account_name', 'users', 'created')
-
-
 class GroupSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Group
-        # fields = ('id', 'account_name', 'users', 'created')
+
+    edu_form = serializers.SerializerMethodField()
+    edu_level = serializers.SerializerMethodField()
+
+    def get_edu_form(self, obj):
+        return obj.get_edu_form_display()
+
+    def get_edu_level(self, obj):
+        return obj.get_edu_level_display()
+
+
+class StudentSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.Student
+
+    group = GroupSerializer()

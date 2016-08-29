@@ -14,8 +14,23 @@
               :handler #(reset! state %)})))
 
 (defn component []
-  (when-let [students @state]
-    [:div.list-group
-     (for [student students]
-       ^{:key (:id student)}
-       [:a {:href (format "#/students/%s" (:id student))} (:first_name student)])]))
+  (let [students @state]
+    (if (empty? students)
+      [:p "В группе нет студентов."]
+      [:table.table.table-striped
+       [:thead
+        [:tr
+         [:th "Фамилия"]
+         [:th "Имя"]
+         [:th "Отчество"]
+         [:th "Дата рождения"]]]
+       [:tbody
+        (for [student students]
+          (let [student-id (:id student)]
+            ^{:key student-id}
+            [:tr
+             [:td [:a {:href (format "#/students/%s" student-id)}
+                   (:last_name student)]]
+             [:td (:first_name student)]
+             [:td (:patronymic_name student)]
+             [:td (:date_birth student)]]))]])))

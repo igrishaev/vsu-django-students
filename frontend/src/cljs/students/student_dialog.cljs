@@ -18,4 +18,11 @@
 
 (defn component []
   (when-let [student @state]
-    [:div (:first_name student)]))
+    [:div
+     [:h4 (format "%s %s %s"
+                  (:last_name student)
+                  (:first_name student)
+                  (:patronymic_name student))]
+     [:p (format "Дата рождения: %s" (:date_birth student))]
+     [:p (format "%s курс" (:course student))]
+     [:p "Группа todo"]]))

@@ -7,6 +7,7 @@
    [students.student-dialog :as student-dialog]))
 
 (defroute #"/" []
+  (content/close)
   (group-list/update))
 
 (defroute #"/groups/(\d+)" [id]
