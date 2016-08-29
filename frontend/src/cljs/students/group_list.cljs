@@ -18,10 +18,9 @@
 
 (defn component []
   (when-let [groups @state]
-    [:div.list-group
+    [:ul.nav.nav-sidebar
      (for [group groups]
        (let [group-id (:id group)]
          ^{:key group-id}
-         [:a.list-group-item
-          {:href (format "#/groups/%s" group-id)}
-          (:title group)]))]))
+         [:li
+          [:a {:href (format "#/groups/%s" group-id)} (:title group)]]))]))
