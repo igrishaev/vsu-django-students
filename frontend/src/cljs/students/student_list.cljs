@@ -15,7 +15,7 @@
 
 (defn component []
   (when-let [students @state]
-    [:div
+    [:div.list-group
      (for [student students]
        ^{:key (:id student)}
        [:a {:href (format "#/students/%s" (:id student))} (:first_name student)])]))

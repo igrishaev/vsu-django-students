@@ -17,22 +17,11 @@
   (reset! state nil))
 
 (defn component []
-  [:div
-   (when-let [groups @state]
-     [:table.table.table-striped
-      [:thead
-       [:tr
-        [:th "Номер"]
-        [:th "Группа"]
-        [:th "Курс"]
-        [:th "Ур. образования"]]]
-      [:tbody
-       (for [group groups]
-         (let [group-id (:id group)]
-           ^{:key group-id}
-           [:tr
-            [:td (:number group)]
-            [:td [:a {:href (format "#/groups/%s" group-id)}
-                  (:title group)]]
-            [:td (:course group)]
-            [:td (:edu_level group)]]))]])])
+  (when-let [groups @state]
+    [:div.list-group
+     (for [group groups]
+       (let [group-id (:id group)]
+         ^{:key group-id}
+         [:a.list-group-item
+          {:href (format "#/groups/%s" group-id)}
+          (:title group)]))]))
