@@ -25,4 +25,8 @@
                   (:patronymic_name student))]
      [:p (format "Дата рождения: %s" (:date_birth student))]
      [:p (format "%s курс" (:course student))]
-     [:p "Группа todo"]]))
+     (let [group (:group student)]
+       [:p
+        (format "Группа №%s " (:number group))
+        [:a {:href (format "#/groups/%s" (:id group))}
+         (:title group)]])]))
