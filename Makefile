@@ -5,7 +5,10 @@ docker-run:
 	docker run -it --rm -p 8080:8080 -v $(CURDIR):/app vsu-django:test $(cmd)
 
 app-serve:
-	src/manage.py runserver 0.0.0.0:8080
+	backend/manage.py runserver 0.0.0.0:8080
+
+app-gen-models:
+	backend/manage.py students_gen_models
 
 app-shell:
-	src/manage.py shell
+	backend/manage.py shell
