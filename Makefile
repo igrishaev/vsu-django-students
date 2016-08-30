@@ -1,7 +1,13 @@
-docker-build:
-	docker build -t vsu-django:test .
+docker-build-prod:
+	docker build -t vsu-django:prod .
 
-docker-run:
+docker-build-test:
+	docker build -t vsu-django:test -f Dockerfile-dev .
+
+docker-run-prod:
+	docker run -it --rm -p 8080:8080 -p 9191:9191 vsu-django:prod $(cmd)
+
+docker-run-test:
 	docker run -it --rm -p 8080:8080 -p 9191:9191 -v $(CURDIR):/app vsu-django:test $(cmd)
 
 app-serve:
@@ -12,13 +18,3 @@ app-gen-models:
 
 app-shell:
 	backend/manage.py shell
-
-# cljs-build:
-# 	boot -s ./frontend cljs target -d ../backend/static
-
-# server-prepare:
-# 	git clone https://github.com/igrishaev/vsu-django-students
-# 	cd vsu-django-students
-# 	mkvirtualenv --python=/usr/bin/python3.5 students
-# 	workon students
-# 	pip install -r pip.requirements.txt

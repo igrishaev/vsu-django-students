@@ -5,7 +5,7 @@ from django.contrib import admin
 
 from django.shortcuts import redirect
 
-index = partial(redirect, "/static/index.html")
+index = partial(redirect, "/static/app/index.html")
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
