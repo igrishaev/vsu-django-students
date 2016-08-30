@@ -12,3 +12,13 @@ app-gen-models:
 
 app-shell:
 	backend/manage.py shell
+
+# cljs-build:
+# 	boot -s ./frontend cljs target -d ../backend/static
+
+server-prepare:
+	git clone https://github.com/igrishaev/vsu-django-students
+	cd vsu-django-students
+	mkvirtualenv --python=/usr/bin/python3.5 students
+	workon students
+	pip install -r pip.requirements.txt
