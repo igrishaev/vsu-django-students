@@ -19,6 +19,7 @@
               :handler update-handelr})))
 
 (defn close []
+  (student-list/close)
   (reset! state nil))
 
 (defn component []

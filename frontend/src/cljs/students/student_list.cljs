@@ -13,6 +13,9 @@
               :keywords? true
               :handler #(reset! state %)})))
 
+(defn close []
+  (reset! state nil))
+
 (defn component []
   (let [students @state]
     (if (empty? students)
