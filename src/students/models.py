@@ -29,6 +29,9 @@ class Group(models.Model):
     course = models.IntegerField(choices=COURSE_CHOICES)
     edu_level = models.CharField(max_length=MAX_LEN, choices=EDU_LEVEL_CHOICES)
 
+    class Meta:
+        ordering = ('title', 'course', )
+
     def __str__(self):
         return self.title
 
@@ -40,6 +43,9 @@ class Student(models.Model):
     date_birth = models.DateField()
     group = models.ForeignKey(Group, related_name='students')
     course = models.IntegerField(choices=COURSE_CHOICES)
+
+    class Meta:
+        ordering = ('last_name', 'first_name', )
 
     def __str__(self):
         return ' '.join((self.last_name, self.first_name, self.patronymic_name))
