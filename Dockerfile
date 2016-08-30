@@ -7,4 +7,5 @@ WORKDIR /app
 RUN pip install -r pip.requirements.txt
 RUN rm pip.requirements*
 
-CMD ["python"]
+WORKDIR /app/backend
+CMD ["uwsgi", "uwsgi.ini"]
