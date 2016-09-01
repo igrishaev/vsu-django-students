@@ -9,8 +9,7 @@
 (defonce state (r/atom nil))
 
 (defn update-handelr [group]
-  (reset! state group)
-  (student-list/update (:id group)))
+  (reset! state group))
 
 (defn update [group-id]
   (let [url (format "/api/groups/%s/" group-id)]
@@ -19,7 +18,6 @@
               :handler update-handelr})))
 
 (defn close []
-  (student-list/close)
   (reset! state nil))
 
 (defn component []
@@ -30,4 +28,4 @@
      [:p (format "%s форма обучения" (:edu_form group))]
      [:p (format "%s курс" (:course group))]
      [:p (format "%s уровень образования" (:edu_level group))]
-     [student-list/component]]))
+     [student-list/component (:id group)]]))
