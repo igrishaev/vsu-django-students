@@ -18,3 +18,7 @@ app-gen-models:
 
 app-shell:
 	backend/manage.py shell
+
+tag-upload:
+	docker tag vsu-django:prod igrishaev/vsu:students
+	docker push igrishaev/vsu:students
